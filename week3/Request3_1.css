@@ -1,0 +1,199 @@
+.frame{
+    display:flex; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.left{
+    /* background-color: blueviolet; */
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.right-desktop-menu{
+    /* background-color: aquamarine; */
+    display:flex; justify-content:flex-end;
+    font-size: 20px;
+    flex:auto; /* auto fill */
+
+}
+
+.item{
+    margin-right:15px;
+}
+
+.welcome{
+    display:flex; justify-content: center; align-items: center;
+    font-size: 40px;
+    font-weight: bold;
+    height: 250px;
+    background-color: lightblue;
+}
+
+.text{
+    width:600px;
+    height:40px;
+    font-size:40px;
+    font-weight:bold;
+    text-align:center;
+}
+
+
+/* for desktop monitor > 1280px  */
+
+
+/* two version!  */
+/*
+.desktop-menu{
+    text-align: center;
+    display: block;
+    /* background-color: blueviolet;
+} 
+*/
+
+.mobile-menu{
+    /* text-align: center; */
+    display: none;
+}
+
+.main{
+    /* background-color: grey; */
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.part1{
+    /* background-color: bisque; */
+    display: flex; 
+    justify-content: space-between;
+    margin-bottom: 20px;
+    max-width: 1200px;
+    gap: 20px; 
+    /* between item 1 and item 3 */
+    /* x x x x up right down left */
+    /* up down    left right*/
+    /*  X              X*/
+}
+
+.promotion{
+    display: flex; 
+    align-items: center;
+    background-color: lightblue;   
+    width: calc(33.33% - 13.33px);
+    font-size: 20px;
+}
+
+.promotion img{
+	width: 80px;
+	height: 50px;
+    margin-right: 10px;
+	/* object-fit: cover; */
+    /* flex: 1; */
+    /* display: flex;  */
+    /* align-items: baseline; */
+    vertical-align: top;
+}
+
+.part2_twelve{
+    display: flex; justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px 0;
+}
+
+.title{
+    /* height: 220px; */
+    background-color: lightblue;
+    width: calc(16.67% - 16.67px);
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    /* display: block; justify-content: center; align-items: baseline; */
+}
+
+.title img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;  /* check this out! */
+	/* height: 50px; */
+	/* object-fit: cover; */
+    /* flex: 1; */
+    /* display:flex; align-items: center; */
+}
+
+/* question about title and title_text. check display mode 
+also the height!
+*/
+
+.title_text{
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    font-size: 20px;
+    margin: auto;
+    text-align: center
+}
+
+/* smallest desktop monitor 1280*/
+/* tablet */
+
+@media (max-width:1200px){
+    .part1{
+        flex-wrap: wrap; /* it would go down */
+        /* justify-content: center; */
+    }
+    .promotion{
+        width: calc(50% - 10px);
+    }
+    .promotion:last-child{
+        flex-grow: 1;
+        }
+    .main{
+        width: 90%;
+    }
+    
+    .title{
+        width: calc(25% - 15px);
+    }
+}
+
+/* cell phone. smallet is 360px */
+@media (max-width:600px){
+    .left{
+        font-size: 15px; /* change the font for phone */
+        display:flex;
+        align-items: center;
+        flex:auto; 
+        /*, you are specifying that it should automatically grow or 
+        shrink as needed to fill the available space 
+        within the flex container. */
+    }
+
+    /* two version!  */
+    .right-desktop-menu{
+        display: none;
+    }
+    
+    .mobile-menu{
+        display: flex; /* to show the image from none to flex */ 
+        /* justify-content:flex-end; */
+        /* align-items: center; */
+    }
+
+    .text{
+        font-size: 30px;
+    }
+
+    .part1{
+        flex-wrap: wrap;
+    }
+
+    .promotion{
+        width: 100%;
+    }
+
+    .title{
+        width: calc(100%);
+    }
+}

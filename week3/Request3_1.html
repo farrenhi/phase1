@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <title> Responsive Web Design </title>
+        <!-- the next line is to reset the default layout -->
+        <!-- <link rel="stylesheet" type="text/css" href="reset.css" /> -->
+        <link rel="stylesheet" type="text/css" href="Request3_1.css" />
+    </head>
+
+    <body onload="get_data_top3(); get_data_12()">
+        <div class="frame">
+            <div class="left"> My Website </div>
+            <div class="right-desktop-menu">
+                <div class="item">Item 1</div>
+                <div class="item">Item 2</div>
+                <div class="item">Item 3</div>
+                <div class="item">Item 4</div>
+            </div>
+            <div class="mobile-menu">
+                <img src="burger-menu-svgrepo-com.png" width="30" height="30"/>
+            </div>
+        </div>
+
+        <div class="welcome">
+            <div class="text"> Welcome to MyHome</div>
+        </div>
+
+      
+        <!-- main part  -->
+        <div class="main">
+
+            <div class="part1" id="part1">
+            </div>
+
+            <div class="part2_twelve" id="part2_twelve">
+                
+                <!-- <div class="title">
+                    <img src="bg.jpg" class="title img">
+                    <div class="title_text">Title 1</div>
+                </div> -->
+                
+
+
+                
+                
+
+                <!-- <div class="title">
+                    <div><img src="bg.jpg" class="img2"></div>
+                    <div class="title_text">
+                        <div>Title 2</div>
+                    </div>
+                </div>
+
+                <div class="title">
+                    <div><img src="bg.jpg" class="img2"></div>
+                    <div class="title_text">
+                        <div>Title 3</div>
+                    </div>
+                </div>
+
+                <div class="title">
+                    <div><img src="bg.jpg" class="img2"></div>
+                    <div class="title_text">
+                        <div>Title 4</div>
+                    </div>
+                </div>
+
+                <div class="title">
+                    <div><img src="bg.jpg" class="img2"></div>
+                    <div class="title_text">
+                        <div>Title 5</div>
+                    </div>
+                </div>
+
+                <div class="title">
+                    <div><img src="bg.jpg" class="img2"></div>
+                    <div class="title_text">
+                        <div>Title 6</div>
+                    </div>
+                </div>
+
+                <div class="title">
+                    <div><img src="bg.jpg" class="img2"></div>
+                    <div class="title_text">
+                        <div>Title 7</div>
+                    </div>
+                </div>
+
+                <div class="title">
+                    <div><img src="bg.jpg" class="img2"></div>
+                    <div class="title_text">
+                        <div>Title 8</div>
+                    </div>
+                </div>
+
+                <div class="title">
+                    <div><img src="bg.jpg" class="img2"></div>
+                    <div class="title_text">
+                        <div>Title 9</div>
+                    </div>
+                </div>
+
+                <div class="title">
+                    <div><img src="bg.jpg" class="img2"></div>
+                    <div class="title_text">
+                        <div>Title 10</div>
+                    </div>
+                </div>
+
+                <div class="title">
+                    <div><img src="bg.jpg" class="img2"></div>
+                    <div class="title_text">
+                        <div>Title 11</div>
+                    </div>
+                </div>
+
+                <div class="title">
+                    <div><img src="bg.jpg" class="img2"></div>
+                    <div class="title_text">
+                        <div>Title 12</div>
+                    </div>
+                </div> -->
+
+
+
+            </div>
+
+
+        </div>
+
+
+        <script>
+            function get_data_top3() {
+                fetch("https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json")
+                .then(function (response) {return response.json();})
+                .then(function (data) {
+                    let result = document.querySelector("#part1");
+                    let attractions = data.result.results; // Access the 'results' property
+                    
+                    for (let i = 0; i < 3 && i < attractions.length; i++) {
+                    let attraction = attractions[i];
+                    let attractionElement = document.createElement("div");
+                    attractionElement.classList.add("promotion");
+
+                    let imageElement = document.createElement("img");
+                    imageElement.src = getFirstJpgUrl(attraction.file);
+                    attractionElement.appendChild(imageElement);
+
+                    let titleElement = document.createElement("div");
+                    titleElement.textContent = attraction.stitle;
+                    attractionElement.appendChild(titleElement);
+
+                    result.appendChild(attractionElement);
+                    }
+                })
+                .catch(function (error) {
+                    console.log("Error:", error);
+                });
+            }
+
+
+            function get_data_12() {
+            fetch(
+            "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json"
+            )
+            .then(function (response) {
+            return response.json();
+            })
+            .then(function (data) {
+            let result = document.querySelector("#part2_twelve");
+            let attractions = data.result.results; // Access the 'results' property
+            for (let i = 4; i < 16 && i < attractions.length; i++) {
+                let attraction = attractions[i];
+
+                let attractionElement = document.createElement("div");
+                attractionElement.classList.add("title");
+                
+
+                let box1 = document.createElement("div"); // trial   
+                let imageElement = document.createElement("img");
+                imageElement.src = getFirstJpgUrl(attraction.file);
+                box1.appendChild(imageElement);          
+                attractionElement.appendChild(box1);      // trial
+
+                let box2 = document.createElement("div"); // trial 
+                let titleElement = document.createElement("div");
+                titleElement.classList.add("title_text");
+                titleElement.textContent = attraction.stitle;
+                box2.appendChild(titleElement);
+                attractionElement.appendChild(box2);      // trial
+
+                result.appendChild(attractionElement);
+            }
+            })
+            .catch(function (error) {
+            console.log("Error:", error);
+            });
+        }            
+
+
+
+
+      
+            function getFirstJpgUrl(string) {
+                let pattern = /https?:\/\/[^\s]+?\.[jJ][pP][eE]?[gG]/;
+                let matches = string.match(pattern);
+        
+                if (matches) {
+                return matches[0];
+                } else {
+                return "No JPEG URL found in the string.";
+                }
+            }
+        </script>
+
+
+
+      
+    </body>
+</html>
