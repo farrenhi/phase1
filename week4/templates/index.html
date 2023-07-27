@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title> Home Page </title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='week4.css') }}" />
+</head>
+<body>
+    <div class="main">
+    <div class="top" id="top"><p> Welcome! Please Log in. </p></div>
+    <form class="bottom" id="loginForm" onsubmit="return validateForm()" action="/signin" method="POST">
+        <div> Get Into the system </div>
+
+        Username <input type="text" name="username" />
+        <br/>
+        Password <input type="text" name="password" />
+        <div> User Agreement <input type="checkbox" id="agreement" name="agreement"> </div> 
+        <!-- <input type="checkbox" id="agreement" name="agreement" required> -->
+        <button> Login </button>
+        <!-- <input type="submit" id="submitBtn" value="Login"> -->
+    </form>
+    </div>
+
+    <!-- 2nd form -->
+
+    <!-- <form action="/calculate" method="POST">
+        Number <input type="text" name="max" />
+        <button> Calculate Result! </button>
+    </form> -->
+
+    
+    <!-- <a href="/page"> link to other page </a>
+    <br/>
+    <img src="/dog.jpg" /> -->
+    <!-- same server so just /page -->
+    
+    <script>
+        function validateForm() {
+            var agreementCheckbox = document.getElementById("agreement");
+            if (!agreementCheckbox.checked) {
+                // If the checkbox is not checked, prevent form submission.
+                alert("Please check the checkbox first");
+                return false; // Prevent form submission.
+            // If the checkbox is checked, allow form submission.
+            // You can perform additional validation or submit the form data here if needed.
+            }
+            return true;
+        }
+    </script>
+
+</body>    
+</html>
