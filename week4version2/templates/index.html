@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title> Home Page </title>
+    <link rel="stylesheet" type="text/css" href="/week4.css" />
+    
+</head>
+<body>
+    <div class="container">
+        <div class="item1" id="top"> Welcome! Please Log in. </div>
+        <form class="item2" id="loginForm" onsubmit="return validateForm()" action="/signin" method="POST">
+            <div class="item-title"> Get Into the system </div>
+            <div><p> Username <input type="text" name="username"/></p></div>
+            <div><p> Password <input type="text" name="password"/></p></div>
+            <div><p> User Agreement <input type="checkbox" id="agreement" name="agreement"></p></div> 
+            <div><button> Login </button></div>
+        </form>
+        <form class="item2" id="item2" onsubmit="redirectToSquaredPage(event)" method="GET">
+            <div class="item-title"> Find the Square of a Number </div>
+            <div><p> Positive Integer <input type="text" id="numberInput" name="numberInput"/></p></div>
+            <div><button> Calculate! </button></div>
+        </form>
+    </div>
+
+    <!-- 2nd form -->
+    <!-- <form action="/calculate" method="POST">
+        Number <input type="text" name="max" />
+        <button> Calculate Result! </button>
+    </form> -->
+    
+    <!-- <a href="/page"> link to other page </a>
+    <br/>
+    <img src="/dog.jpg" /> -->
+    <!-- same server so just /page -->
+    
+    <script>
+        function validateForm() {
+            var agreementCheckbox = document.getElementById("agreement");
+            if (!agreementCheckbox.checked) {
+                // If the checkbox is not checked, prevent form submission.
+                alert("Please check the checkbox first");
+                return false; // Prevent form submission.
+            // If the checkbox is checked, allow form submission.
+            // You can perform additional validation or submit the form data here if needed.
+            }
+            return true;
+        }
+
+        function redirectToSquaredPage(event) {
+            event.preventDefault(); // Prevent form submission (default behavior)
+
+            // Get the entered number from the input field
+            const numberInput = document.getElementById('numberInput');
+            const number = numberInput.value;
+
+            // Check if the entered text is a positive number
+            // parseFloat: convert the input number to a floating-point number
+            if (isNaN(number) || parseFloat(number) <= 0 || number === "" || !Number.isInteger(parseFloat(number))) {
+                alert("Please enter a positive number.");
+                return; // Exit the function, no redirection will occur
+            }
+            // Redirect to the Squared Number Page with the entered number appended to the path
+            window.location.href = `/square/${number}`;
+        }
+    </script>
+
+</body>    
+</html>
