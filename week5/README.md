@@ -1,4 +1,4 @@
-# Task 3 SQL CRUD
+![t403](https://github.com/farrenhi/phase1/assets/114633763/a5234a62-faa8-46a2-b83d-17fda6c06ad3)# Task 3 SQL CRUD
 
 ## Action 0 Create Database and Table
 ```SQL
@@ -68,21 +68,19 @@ select * from member;
 ```SQL
 SELECT COUNT(*) AS row_count FROM member;
 ```
-![task4_1](https://github.com/farrenhi/phase1/assets/114633763/683bce01-6ff5-4d92-869a-9e6ff54a4ad7)
-
+![t401](https://github.com/farrenhi/phase1/assets/114633763/e654f409-c881-4946-9b51-4cf59b9ea6d9)
 
 ## Action 2
 ```SQL
 SELECT SUM(follower_count) AS total_followers FROM member;
 ```
-![task4_2](https://github.com/farrenhi/phase1/assets/114633763/96d1acdc-0178-4188-9b65-78c3f8f02355)
-
+![t402](https://github.com/farrenhi/phase1/assets/114633763/84940ee1-142f-40e3-9f85-2d0a3512f35e)
 
 ## Action 3
 ```SQL
 SELECT AVG(follower_count) AS average_followers FROM member;
 ```
-![task4_3](https://github.com/farrenhi/phase1/assets/114633763/0a2c1a3e-e8cd-485f-9122-ac11982ca267)
+![t403](https://github.com/farrenhi/phase1/assets/114633763/dcee13e0-a1dd-41f1-8b9d-db221a8291fb)
 
 # Task 5 SQL Join
 ## Action 0 Create Table
@@ -98,7 +96,7 @@ CREATE TABLE message(
     time datetime NOT NULL default current_timestamp
 );
 ```
-![task5_0](https://github.com/farrenhi/phase1/assets/114633763/ccf718c3-ab0e-452a-afab-6735f4631e6f)
+![t500](https://github.com/farrenhi/phase1/assets/114633763/420090d8-a0e8-43fd-8a5b-f9e740c8061b)
 
 ## Action 1
 ```SQL
@@ -106,7 +104,7 @@ SELECT message.*, member.name
 FROM message
 INNER JOIN member ON message.member_id = member.id;
 ```
-![task5_1](https://github.com/farrenhi/phase1/assets/114633763/7e0c043d-1571-4a1c-a21f-da4d67b9674e)
+![t501](https://github.com/farrenhi/phase1/assets/114633763/87c02db6-badc-4bc8-bd0b-64a195cda07a)
 
 ## Action 2
 ```SQL
@@ -115,8 +113,7 @@ FROM message
 JOIN member ON message.member_id = member.id
 WHERE member.username = 'test';
 ```
-![task5_2](https://github.com/farrenhi/phase1/assets/114633763/77f22eed-e8a9-4c1b-abb7-5119861ab859)
-
+![t502](https://github.com/farrenhi/phase1/assets/114633763/7cb7e5f7-e2ea-4351-8ada-d4432b81a932)
 
 ## Action 3
 ```SQL
@@ -126,4 +123,4 @@ JOIN member ON message.member_id = member.id
 WHERE member.username = 'test'
 GROUP BY member.username;
 ```
-![task5_3](https://github.com/farrenhi/phase1/assets/114633763/c93eb5e0-e279-4c2b-a6e0-9191c1d7ad77)
+![t503](https://github.com/farrenhi/phase1/assets/114633763/b41855bb-f9cc-4fd8-b850-c0a8ee57e8f5)
