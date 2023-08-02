@@ -3,6 +3,15 @@
 
 ## Action 0 Create Database and Table
 ```SQL
+CREATE TABLE member(
+	id bigint auto_increment,
+    primary key (id),
+    name varchar(255) NOT NULL,
+    username varchar(255) NOT NULL,
+    password varchar(255) NOT NULL,
+    follower_count int unsigned NOT NULL DEFAULT 0,
+    time datetime NOT NULL default current_timestamp
+);
 ```
 ![task3_SQL_CRUD_1](https://github.com/farrenhi/phase1/assets/114633763/72565ce3-dc58-48f1-8954-2326f3aad9ee)
 
