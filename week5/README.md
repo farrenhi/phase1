@@ -3,9 +3,13 @@ Week5
 Task 3 SQL CRUD
 
 Action 1
+
 INSERT INTO member(name, username, password, follower_count) VALUES('Allen', 'test', 'test', 1);
+
 INSERT INTO member(name, username, password, follower_count) VALUES('Bob', 'little', 'big', 2);
+
 INSERT INTO member(name, username, password, follower_count) VALUES('Cindy', 'high', 'low', 3);
+
 INSERT INTO member(name, username, password, follower_count) VALUES('David', 'tall', 'short', 10);
 ![task3_SQL_CRUD_1](https://github.com/farrenhi/phase1/assets/114633763/72565ce3-dc58-48f1-8954-2326f3aad9ee)
 
