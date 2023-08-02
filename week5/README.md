@@ -1,6 +1,5 @@
 # Task 3 SQL CRUD
 
-
 ## Action 0 Create Database and Table
 ```SQL
 CREATE TABLE member(
@@ -85,6 +84,20 @@ SELECT AVG(follower_count) AS average_followers FROM member;
 ![task4_3](https://github.com/farrenhi/phase1/assets/114633763/0a2c1a3e-e8cd-485f-9122-ac11982ca267)
 
 # Task 5 SQL Join
+## Action 0 Create Table
+```SQL
+CREATE TABLE message(
+	id bigint auto_increment,
+    primary key (id),
+    member_id bigint NOT NULL,
+    FOREIGN KEY (member_id) REFERENCES member(id),
+    content varchar(255) NOT NULL,
+    like_count int unsigned NOT NULL DEFAULT 0,
+    time datetime NOT NULL default current_timestamp
+);
+
+```
+
 ## Action 1
 ```SQL
 SELECT message.*, member.name
