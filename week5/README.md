@@ -1,5 +1,3 @@
-![t403](https://github.com/farrenhi/phase1/assets/114633763/a5234a62-faa8-46a2-b83d-17fda6c06ad3)# Task 3 SQL CRUD
-
 ## Action 0 Create Database and Table
 ```SQL
 CREATE DATABASE website;
