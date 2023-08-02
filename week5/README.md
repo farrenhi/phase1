@@ -1,7 +1,4 @@
-Week5
-
 # Task 3 SQL CRUD
-
 ## Action 1
 ```SQL
 INSERT INTO member(name, username, password, follower_count) VALUES('Allen', 'test', 'test', 1);
@@ -18,12 +15,10 @@ SELECT * FROM member;
 ![task3_SQL_CRUD_2](https://github.com/farrenhi/phase1/assets/114633763/4f8dcd51-2b66-462f-b190-0ae74ec394ae)
 
 ## Action 3
-
 ```SQL
 SELECT * FROM member ORDER BY time DESC;
 ```
 ![task3_SQL_CRUD_3](https://github.com/farrenhi/phase1/assets/114633763/b93bdb19-629f-4d78-9caa-74e11ef861f6)
-
 
 ## Action 4
 ```SQL
@@ -53,17 +48,20 @@ select * from member;
 ![task3_SQL_CRUD_7](https://github.com/farrenhi/phase1/assets/114633763/f276f691-0109-4bbb-897c-34fbcd7af77f)
 
 # Task 4 SQL Aggregate Functions
-
 ## Action 1
 ```SQL
 SELECT COUNT(*) AS row_count FROM member;
-![task4_1](https://github.com/farrenhi/phase1/assets/114633763/683bce01-6ff5-4d92-869a-9e6ff54a4ad7)
 ```
+![task4_1](https://github.com/farrenhi/phase1/assets/114633763/683bce01-6ff5-4d92-869a-9e6ff54a4ad7)
+
+
 ## Action 2
 ```SQL
 SELECT SUM(follower_count) AS total_followers FROM member;
-![task4_2](https://github.com/farrenhi/phase1/assets/114633763/96d1acdc-0178-4188-9b65-78c3f8f02355)
 ```
+![task4_2](https://github.com/farrenhi/phase1/assets/114633763/96d1acdc-0178-4188-9b65-78c3f8f02355)
+
+
 ## Action 3
 ```SQL
 SELECT AVG(follower_count) AS average_followers FROM member;
@@ -71,7 +69,6 @@ SELECT AVG(follower_count) AS average_followers FROM member;
 ![task4_3](https://github.com/farrenhi/phase1/assets/114633763/0a2c1a3e-e8cd-485f-9122-ac11982ca267)
 
 # Task 5 SQL Join
-
 ## Action 1
 ```SQL
 SELECT message.*, member.name
@@ -86,8 +83,10 @@ SELECT message.content, member.name, member.username
 FROM message
 JOIN member ON message.member_id = member.id
 WHERE member.username = 'test';
-![task5_2](https://github.com/farrenhi/phase1/assets/114633763/77f22eed-e8a9-4c1b-abb7-5119861ab859)
 ```
+![task5_2](https://github.com/farrenhi/phase1/assets/114633763/77f22eed-e8a9-4c1b-abb7-5119861ab859)
+
+
 ## Action 3
 ```SQL
 SELECT member.username, AVG(message.like_count) AS average_like_count
