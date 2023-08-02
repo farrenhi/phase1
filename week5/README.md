@@ -50,25 +50,31 @@ select * from member;
 Task 4 SQL Aggregate Functions
 
 Action 1
+
 SELECT COUNT(*) AS row_count FROM member;
 ![task4_1](https://github.com/farrenhi/phase1/assets/114633763/683bce01-6ff5-4d92-869a-9e6ff54a4ad7)
 
 Action 2
+
 SELECT SUM(follower_count) AS total_followers FROM member;
 ![task4_2](https://github.com/farrenhi/phase1/assets/114633763/96d1acdc-0178-4188-9b65-78c3f8f02355)
 
 Action 3
+
 SELECT AVG(follower_count) AS average_followers FROM member;
 ![task4_3](https://github.com/farrenhi/phase1/assets/114633763/0a2c1a3e-e8cd-485f-9122-ac11982ca267)
 
 Task 5 SQL Join
+
 Action 1
+
 SELECT message.*, member.name
 FROM message
 INNER JOIN member ON message.member_id = member.id;
 ![task5_1](https://github.com/farrenhi/phase1/assets/114633763/7e0c043d-1571-4a1c-a21f-da4d67b9674e)
 
 Action 2
+
 SELECT message.content, member.name, member.username
 FROM message
 JOIN member ON message.member_id = member.id
@@ -76,6 +82,7 @@ WHERE member.username = 'test';
 ![task5_2](https://github.com/farrenhi/phase1/assets/114633763/77f22eed-e8a9-4c1b-abb7-5119861ab859)
 
 Action 3
+
 SELECT member.username, AVG(message.like_count) AS average_like_count
 FROM message
 JOIN member ON message.member_id = member.id
