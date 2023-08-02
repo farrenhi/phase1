@@ -1,6 +1,7 @@
 Week5
 
 Task 3 SQL CRUD
+
 Action 1
 INSERT INTO member(name, username, password, follower_count) VALUES('Allen', 'test', 'test', 1);
 INSERT INTO member(name, username, password, follower_count) VALUES('Bob', 'little', 'big', 2);
