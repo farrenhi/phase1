@@ -14,7 +14,6 @@ CREATE TABLE member(
     time datetime NOT NULL default current_timestamp
 );
 ```
-![task3_SQL_CRUD_1](https://github.com/farrenhi/phase1/assets/114633763/72565ce3-dc58-48f1-8954-2326f3aad9ee)
 
 ## Action 1
 ```SQL
@@ -23,37 +22,37 @@ INSERT INTO member(name, username, password, follower_count) VALUES('Bob', 'litt
 INSERT INTO member(name, username, password, follower_count) VALUES('Cindy', 'high', 'low', 3);
 INSERT INTO member(name, username, password, follower_count) VALUES('David', 'tall', 'short', 10);
 ```
-![task3_SQL_CRUD_1](https://github.com/farrenhi/phase1/assets/114633763/72565ce3-dc58-48f1-8954-2326f3aad9ee)
+![t301](https://github.com/farrenhi/phase1/assets/114633763/9bb14a96-e3a4-473d-b6fb-5f34823ee244)
 
 ## Action 2
 ```SQL
 SELECT * FROM member;
 ```
-![task3_SQL_CRUD_2](https://github.com/farrenhi/phase1/assets/114633763/4f8dcd51-2b66-462f-b190-0ae74ec394ae)
+![t302](https://github.com/farrenhi/phase1/assets/114633763/49089656-07c0-402b-8405-b5e630979cfb)
 
 ## Action 3
 ```SQL
 SELECT * FROM member ORDER BY time DESC;
 ```
-![task3_SQL_CRUD_3](https://github.com/farrenhi/phase1/assets/114633763/b93bdb19-629f-4d78-9caa-74e11ef861f6)
+![t303](https://github.com/farrenhi/phase1/assets/114633763/865c4f82-e4b2-436e-ada2-70a45c2027eb)
 
 ## Action 4
 ```SQL
 SELECT * FROM member ORDER BY time DESC LIMIT 3 OFFSET 1;
 ```
-![task3_SQL_CRUD_4](https://github.com/farrenhi/phase1/assets/114633763/ac180644-7684-4abb-a24b-153b332dcb27)
+![t304](https://github.com/farrenhi/phase1/assets/114633763/cc3a6d6f-bccc-47b0-bfaf-213702f6118f)
 
 ## Action 5
 ```SQL
 SELECT * FROM member WHERE username = 'test';
 ```
-![task3_SQL_CRUD_5](https://github.com/farrenhi/phase1/assets/114633763/07681798-2332-4201-a529-efc9991e0b08)
+![t305](https://github.com/farrenhi/phase1/assets/114633763/475e4b6c-3eeb-497a-9a40-8726ff3dd4a3)
 
 ## Action 6
 ```SQL
 SELECT * FROM member WHERE username = 'test' AND password = 'test';
 ```
-![task3_SQL_CRUD_6](https://github.com/farrenhi/phase1/assets/114633763/2343d102-b2eb-412a-8702-e886a12d74d3)
+![t306](https://github.com/farrenhi/phase1/assets/114633763/0460142b-acdd-48c0-8474-d23b1004ffc4)
 
 ## Action 7
 ```SQL
@@ -62,7 +61,7 @@ SET name = 'test2'
 WHERE username = 'test';
 select * from member;
 ```
-![task3_SQL_CRUD_7](https://github.com/farrenhi/phase1/assets/114633763/f276f691-0109-4bbb-897c-34fbcd7af77f)
+![t307](https://github.com/farrenhi/phase1/assets/114633763/660cf48f-b0ff-43d7-8dee-f3f74d459fb9)
 
 # Task 4 SQL Aggregate Functions
 ## Action 1
