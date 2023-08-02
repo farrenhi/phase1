@@ -95,8 +95,8 @@ CREATE TABLE message(
     like_count int unsigned NOT NULL DEFAULT 0,
     time datetime NOT NULL default current_timestamp
 );
-
 ```
+![task5_0](https://github.com/farrenhi/phase1/assets/114633763/ccf718c3-ab0e-452a-afab-6735f4631e6f)
 
 ## Action 1
 ```SQL
