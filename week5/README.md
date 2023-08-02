@@ -2,6 +2,8 @@
 
 ## Action 0 Create Database and Table
 ```SQL
+CREATE DATABASE website;
+USE website;
 CREATE TABLE member(
 	id bigint auto_increment,
     primary key (id),
@@ -86,6 +88,7 @@ SELECT AVG(follower_count) AS average_followers FROM member;
 # Task 5 SQL Join
 ## Action 0 Create Table
 ```SQL
+USE website;
 CREATE TABLE message(
 	id bigint auto_increment,
     primary key (id),
