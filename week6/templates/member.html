@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title> Success Page </title>
+    <link rel="stylesheet" type="text/css" href="/week4.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="item1" id="top"> Success Page </div>
+        
+        <div class="item2">
+            <div>Hello, {{ data }}</div>
+            <div>Login Success!</div>
+            <div><a href="/signout" method="GET"> Log Out </a></div>
+        </div>
+
+        <!-- future feature: validate if message is none: onsubmit="return validate_form_signin()" -->
+        <form class="item2" id="loginForm" action="/createMessage"  method="POST"> 
+            <div class="item-title"> Leave your message here! </div>
+            <div><p> Message <input type="text" id="message" name="message"/></p></div>
+            <div><button> Submit </button></div>
+        </form>
+
+        <div class="item2">
+            <!-- <ul> -->
+                {% for content, name in message_data %}
+                    <p><strong>{{ name }}</strong> : {{ content }}</P>
+                {% endfor %}
+            <!-- </ul>             -->
+        </div>
+    </div>
+</body>    
+</html>
+
