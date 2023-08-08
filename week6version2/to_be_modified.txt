@@ -1,0 +1,5 @@
+index.html
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='week4.css') }}" />
+
+Need to change it back to url_for. this is for
