@@ -95,6 +95,7 @@
 
         document.getElementById("button_update_new_name").addEventListener("click", () => {
             const new_name = document.getElementById("update_new_name").value;
+            const hostname = window.location.hostname;
 
             if (!new_name) {
                 alert("Please enter a new name.");
@@ -106,7 +107,7 @@
                 name: new_name
             };
 
-            fetch(`http://127.0.0.1:3000/api/member`, {
+            fetch(`http://${hostname}:3000/api/member`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
