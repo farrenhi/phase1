@@ -1,83 +1,15 @@
 from flask import Flask, request, render_template, redirect, url_for, session, jsonify
 
-### Connection Pool
+### Python-SQL
 import mysql.connector.pooling
-
-# Configuration for the database connection pool
-db_config_haha = {
-    "host": "localhost",
-    "user": "root",
-    "password": "12345678",
-    "database": "website",
-}
-
-# Create a connection pool
-connection_pool = mysql.connector.pooling.MySQLConnectionPool(pool_name="mypool", pool_size=5, **db_config_haha)
-
-# Function to execute a query using a connection from the pool
-def execute_query_create(query, data=None):
-    connection = connection_pool.get_connection()
-    cursor = connection.cursor(dictionary=True)
-    try:
-        cursor.execute(query, data)
-        connection.commit()
-        return True
-    except Exception as e:
-        connection.rollback()
-        print("Error:", e)
-        return False
-    finally:
-        cursor.close()
-        connection.close()
-
-def execute_query_read(query, data=None):
-    # To request a connection from the pool, use its get_connection() method: 
-    connection = connection_pool.get_connection() 
-    cursor = connection.cursor(dictionary=True)
-    myresult = None
-    try:
-        cursor.execute(query, data)
-        myresult = cursor.fetchall()
-        if len(myresult) == 0:
-            myresult = None
-    except Exception as e:
-        print("Error:", e)
-    finally:
-        cursor.close()
-        connection.close()
-        return myresult
-
-
-def execute_query_update(query, data=None):
-    connection = connection_pool.get_connection()
-    cursor = connection.cursor(dictionary=True)
-    try:
-        cursor.execute(query, data)
-        connection.commit()
-        return True
-    except Exception as e:
-        connection.rollback()
-        print("Error:", e)
-        return False
-    finally:
-        cursor.close()
-        connection.close()
-
-def execute_query_delete(query, data=None):
-    connection = connection_pool.get_connection()
-    cursor = connection.cursor(dictionary=True)
-    try:
-        cursor.execute(query, data)
-        connection.commit()
-        return True
-    except Exception as e:
-        connection.rollback()
-        print("Error:", e)
-        return False
-    finally:
-        cursor.close()
-        connection.close()
-
+import mysql.connector
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="12345678",
+  database='website'
+)
+###
 
 app = Flask(
     __name__,
@@ -91,20 +23,47 @@ app.secret_key = "secret" # session would need this!
 def index():
     return render_template("index.html")
 
+### Python SQL function
+# version 1: data saved as tuple. not good. version 2 is dictionary
+# def get_info_from_sql(username):
+#     '''input username and return corresponding info from SQL'''
+#     mycursor = mydb.cursor()
 
-## Version 3: Connection Pool!
+#     sql = "SELECT * FROM member WHERE username = (%s)"
+#     val = (username,)
+#     mycursor.execute(sql, val)
+
+#     myresult = mycursor.fetchall()
+#     if myresult:
+#         return myresult[0]
+#     else:
+#         return None
+
+# # version2: Dictionary Cursor implementation
 def get_info_from_sql(username):
     '''input username and return corresponding info from SQL'''
-    query = "SELECT * FROM member WHERE username = (%s)"
-    data = (username,)
-    # print(execute_query_read(query, data))
-    return execute_query_read(query, data)
+    mycursor = mydb.cursor(dictionary=True)
+
+    sql = "SELECT * FROM member WHERE username = (%s)"
+    val = (username,)
+    mycursor.execute(sql, val)
+    myresult = mycursor.fetchall()
+    # Close cursor and connection
+    mycursor.close()
+    # mydb.close()
+    if myresult:
+        return myresult
+    else:
+        return None
 
 def commit_info_into_sql(name, username, password):
     '''this function would write data into SQL database'''
-    query = "INSERT INTO member (name, username, password) VALUES (%s, %s, %s)"
-    data = (name, username, password)
-    execute_query_create(query, data)
+    mycursor = mydb.cursor()
+
+    sql = "INSERT INTO member (name, username, password) VALUES (%s, %s, %s)"
+    val = (name, username, password)
+    mycursor.execute(sql, val)
+    mydb.commit()
     # return redirect(url_for("index"))
     # Question: if it is commit, we will go to index directly. but how to design it?
     # in case if database writing does not work, we should show error message about database
@@ -114,29 +73,47 @@ def commit_info_into_sql(name, username, password):
 # https://chat.openai.com/c/4e9b8b76-7d77-4403-9a51-7054aac4203f
 # Question: so, what if we save the data as dictionary for message board?
 def get_all_messages_from_sql():
-    query = "SELECT message.content, member.name, message.member_id, message.id FROM message INNER JOIN member ON message.member_id = member.id;"
-    return execute_query_read(query)    
+    mycursor = mydb.cursor()
+    mycursor.execute(
+      # "SELECT message.*, member.name FROM message INNER JOIN member ON message.member_id = member.id;"
+      "SELECT message.content, member.name, message.member_id, message.id FROM message INNER JOIN member ON message.member_id = member.id;"
+    )
+    myresult = mycursor.fetchall()
+    return myresult    
 
-# Create function version 2
 def commit_to_sql_message(member_id, content):
     '''this function would write data into SQL database Table message'''
-    query = "INSERT INTO message (member_id, content) VALUES (%s, %s)"
-    data = (member_id, content)
-    execute_query_create(query, data)
+    mycursor = mydb.cursor()
 
-# Delete function version 2
+    sql = "INSERT INTO message (member_id, content) VALUES (%s, %s)"
+    val = (member_id, content)
+    mycursor.execute(sql, val)
+
+    mydb.commit()  
+
 def delete_sql_message(message_id):
     '''Delete a row data from SQL database'''
-    query = "DELETE FROM message WHERE id = %s"
-    data = (message_id, )
-    return execute_query_delete(query, data)
+    mycursor = mydb.cursor()
+    sql = "DELETE FROM message WHERE id = %s"
+    id_input = (message_id, )
+    mycursor.execute(sql, id_input)
+    mydb.commit()
 
 def update_name_sql(username, new_name):
     '''Based on the input username, we will update the name as new_name'''
-    query = "UPDATE member SET name = %s WHERE username = %s"
-    data = (new_name, username)
-    return execute_query_update(query, data)
-
+    try:
+        mycursor = mydb.cursor()
+        sql = "UPDATE member SET name = %s WHERE username = %s"
+        id_input = (new_name, username)
+        mycursor.execute(sql, id_input)
+        mydb.commit()
+        return True
+    except Exception as e:
+        print("Error:", e)
+        return False
+    finally:
+        mycursor.close()
+###
 
 # Look Up API
 # @app.route("/api/member/<string:username>", methods=["GET"])
@@ -193,7 +170,7 @@ def signup():
 def deleteMessage():
     message_id = request.form.get("message_id")
     delete_sql_message(message_id)
-    return redirect(url_for("messageboard"))
+    return redirect(url_for("member"))
 
 # Create Message Endpoint
 @app.route("/createMessage", methods=["POST"])
@@ -201,7 +178,7 @@ def createMessage():
     content = request.form["message"]
     member_id = session.get("id")
     commit_to_sql_message(member_id, content)
-    return redirect(url_for("messageboard"))
+    return redirect(url_for("member"))
 
 # Verification Endpoint
 @app.route("/signin", methods=["POST"])
@@ -245,24 +222,6 @@ def member():
     else:
         # User is not signed in, redirect to the login page or show an error message.
         return redirect(url_for("index"))  # Redirect to the login page if not signed in.
-
-
-# message board (copied from member route)
-@app.route("/messageboard")
-def messageboard():
-    if session.get("SIGNED-IN"):
-        # User is signed in, render the success page.
-        messages_for_board = get_all_messages_from_sql()
-        print(messages_for_board)
-        name = session.get("name")
-        this_member_id = session.get("id")
-        return render_template(
-            "messages.html", data_name=name, message_data=messages_for_board, data_this_member_id=this_member_id)
-    else:
-        # User is not signed in, redirect to the login page or show an error message.
-        return redirect(url_for("index"))  # Redirect to the login page if not signed in.
-
-
 
 @app.route("/error")
 def error():
