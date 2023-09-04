@@ -3,13 +3,24 @@ from flask import Flask, request, render_template, redirect, url_for, session, j
 ### Connection Pool
 import mysql.connector.pooling
 
+
 # Configuration for the database connection pool
 db_config_haha = {
     "host": "localhost",
     "user": "root",
-    "password": "12345678",
+    "password": "MyNewPass5!",
     "database": "website",
+    "port": 3306,
 }
+
+
+# # Configuration for the database connection pool
+# db_config_haha = {
+#     "host": "localhost",
+#     "user": "root",
+#     "password": "12345678",
+#     "database": "website",
+# }
 
 # Create a connection pool
 connection_pool = mysql.connector.pooling.MySQLConnectionPool(pool_name="mypool", pool_size=5, **db_config_haha)
