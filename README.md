@@ -1,5 +1,6 @@
-WeHelp Software Engineering Bootcamp
+WeHelp Software Engineering Bootcamp Phase1
 
-Phase1
+A demo website for login system:
 
-Week 1 to Week 8
+https://github.com/farrenhi/phase1/tree/main/week7
+
